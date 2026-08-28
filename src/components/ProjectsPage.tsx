@@ -17,12 +17,12 @@ import { Link } from "react-router-dom";
 import { handleProtectedMailClick } from "../utils/email";
 import { GitHubIcon, LinkedInIcon } from "./SocialIcons";
 
+import autopremiumImg from "../assets/images/autopremium.svg";
 import image1 from "../assets/images/image1.jpg";
 import image2 from "../assets/images/image2.svg";
 import image3 from "../assets/images/image3.webp";
 import image4 from "../assets/images/image4.avif";
 import socialMediaAgentImg from "../assets/images/social-media-agent.svg";
-import autopremiumImg from "../assets/images/autopremium.svg";
 
 interface ProjectItem {
   title: string;
@@ -53,21 +53,11 @@ const ProjectsPage: React.FC = () => {
 
   const projects: ProjectItem[] = [
     {
-      title: "Social Media AI Agent",
-      desc:
-        i18n.language === "fr"
-          ? "Agent IA autonome multi-plateformes conçu pour maintenir une présence active et informée sur les réseaux sociaux. Agrège les discussions clés et tendances sectorielles sur LinkedIn, X (Twitter) et Reddit, analyse la résonance thématique et propose des publications engageantes prêtes à être partagées."
-          : "Autonomous multi-platform AI agent designed to keep users informed and active across their digital networks. Intelligently aggregates trending industry discussions across LinkedIn, X (Twitter), and Reddit, analyzes topical resonance, and generates personalized, high-engagement content proposals ready for publication.",
-      img: socialMediaAgentImg,
-      url: "https://github.com/anne7076/social-media-agent",
-      tags: ["AI Agent", "Python", "LangChain", "LLMs", "Social APIs"],
-    },
-    {
       title: "AutoPremium (Cloud & DevOps)",
       desc:
         i18n.language === "fr"
-          ? "Infrastructure Cloud et automatisation DevOps pour un catalogue de produits automobiles d'entreprise. L'application métier étant propriétaire, l'Infrastructure as Code (IaC) complète est démontrée publiquement via Terraform sur AWS : conception modulaire de VPC, conteneurisation Docker, provisionnement automatisé et documentation d'architecture déployée."
-          : "Cloud infrastructure and deployment automation for an enterprise automotive product catalog. The core application is proprietary, while the complete Infrastructure as Code (IaC) is publicly demonstrated using Terraform on AWS—featuring modular VPC design, Docker container orchestration, automated provisioning, and comprehensive deployed architecture documentation.",
+          ? "Conception et automatisation de l'infrastructure cloud pour le déploiement d'un catalogue automobile d'entreprise avec Terraform sur AWS. Pratique approfondie de l'Infrastructure as Code (IaC) modulaire, conception de réseaux VPC isolés (sous-réseaux publics/privés, passerelles NAT), conteneurisation avec Docker et sécurisation IAM. Maîtrise du verrouillage d'état distant S3/DynamoDB et rédaction de documentation d'architecture technique pour des déploiements fiables et reproductibles."
+          : "Engineered automated cloud infrastructure for an enterprise automotive product catalog using Terraform on AWS. Practiced modular Infrastructure as Code (IaC) design, structuring isolated multi-tier VPC networking (public/private subnets, NAT gateways), Docker containerization, and granular IAM security policies. Mastered remote state locking with S3 and DynamoDB, automated provisioning pipelines, and comprehensive architecture documentation for reproducible production environments.",
       img: autopremiumImg,
       docsUrl: "https://anne7076.github.io/autopremuim-terraform-infra/",
       githubUrl: "https://github.com/anne7076/autopremuim-terraform-infra",
@@ -75,41 +65,51 @@ const ProjectsPage: React.FC = () => {
       tags: ["Terraform", "DevOps", "AWS", "Docker", "IaC", "CI/CD"],
     },
     {
+      title: "Social Media AI Agent",
+      desc:
+        i18n.language === "fr"
+          ? "Développement d'un agent IA autonome pour la veille stratégique et l'engagement automatisé sur les réseaux sociaux. Pratique de l'orchestration multi-agents avec LangChain, du filtrage sémantique par embeddings vectoriels et de l'intégration résiliente d'APIs tierces (LinkedIn, X/Twitter, Reddit). Maîtrise de la synthèse d'actualités en temps réel, de l'ingénierie de prompts avancée pour l'adaptation stylistique de contenu et de l'automatisation de flux décisionnels."
+          : "Developed an autonomous AI agent to automate research, trend curation, and engagement across major digital networks. Practiced multi-agent orchestration with LangChain, semantic content filtering via vector embeddings, and resilient API integration for LinkedIn, X (Twitter), and Reddit. Mastered real-time trend synthesis, advanced prompt engineering for stylistic voice adaptation, and autonomous decision workflows.",
+      img: socialMediaAgentImg,
+      url: "https://github.com/anne7076/social-media-agent",
+      tags: ["AI Agent", "Python", "LangChain", "LLMs", "Social APIs"],
+    },
+    {
       title: "E-Commerce Platform",
       desc:
         i18n.language === "fr"
-          ? "Plateforme e-commerce full-stack d'envergure industrielle utilisant Next.js pour un rendu côté serveur (SSR) haute performance et l'optimisation SEO, associée à des microservices REST robustes en Java Spring Boot. Intègre une authentification JWT sécurisée, un catalogue dynamique avec filtres multicritères, la gestion d'état du panier et un flux de paiement fiable."
-          : "Full-stack, production-grade e-commerce platform engineered with Next.js for high-performance server-side rendering (SSR), SEO optimization, and responsive routing, backed by scalable Java Spring Boot REST microservices. Built end-to-end features including JWT-secured authentication, dynamic product catalog, cart state workflows, and reliable transaction processing.",
+          ? "Architecture d'une solution e-commerce full-stack découplée combinant un frontend Next.js haute performance et un backend Java Spring Boot en microservices REST. Pratique du rendu côté serveur (SSR), de l'optimisation SEO, de l'authentification sans état par JWT avec contrôle d'accès basé sur les rôles (RBAC), et de la persistance relationnelle PostgreSQL/JPA. Maîtrise de la gestion d'état transactionnelle pour les paniers et paiements, ainsi que de la conception de contrats d'API scalables."
+          : "Architected a full-stack, decoupled e-commerce solution combining a high-performance Next.js frontend with a Java Spring Boot REST microservice backend. Practiced server-side rendering (SSR), SEO optimization, stateless JWT authentication with role-based access control (RBAC), and relational persistence with PostgreSQL/JPA. Mastered transactional state management for cart and checkout flows, and scalable REST API contract design.",
       img: image4,
       url: "https://github.com/anne7076",
       tags: ["Next.js", "Spring Boot", "Java", "PostgreSQL", "REST APIs"],
     },
     {
-      title: "Moroccan Constitution Chatbot",
-      desc:
-        i18n.language === "fr"
-          ? "Conception d'un chatbot basé sur la technologie RAG (Retrieval-Augmented Generation) en Python pour répondre aux questions et fournir des analyses sur la constitution marocaine."
-          : "Created a chatbot based on Retrieval-Augmented Generation (RAG) technology using Python. Designed to answer questions and provide insights about constitution articles.",
-      img: image2,
-      url: "https://github.com/anne7076",
-      tags: ["Python", "GenAI", "RAG", "NLP"],
-    },
-    {
       title: "Client Aide Chatbot",
       desc:
         i18n.language === "fr"
-          ? "Développement d'un assistant conversationnel RAG en Python pour assister les clients sur les produits, services et politiques d'entreprise avec des réponses précises en temps réel."
-          : "Developed a chatbot using Retrieval-Augmented Generation (RAG) technology in Python to assist clients with inquiries about products, services, and company policies.",
+          ? "Conception d'un assistant conversationnel d'entreprise basé sur une architecture RAG en Python pour le support client et la FAQ métier. Pratique du parsing documentaire, de l'indexation sémantique en base vectorielle et du guidage des LLMs sur des bases de connaissances internes. Maîtrise des techniques de réduction des hallucinations, de la gestion du contexte conversationnel multi-tours et du déploiement d'APIs d'inférence à faible latence."
+          : "Engineered an intelligent enterprise customer support chatbot using Retrieval-Augmented Generation (RAG) in Python. Practiced document parsing, semantic vector indexing, and grounding LLM responses against proprietary company knowledge bases. Mastered hallucination mitigation, multi-turn conversational context management, and deploying low-latency streaming inference APIs.",
       img: image3,
       isPrivate: true,
       tags: ["Python", "LangChain", "RAG", "LLM"],
     },
     {
+      title: "Moroccan Constitution Chatbot",
+      desc:
+        i18n.language === "fr"
+          ? "Développement d'un assistant de recherche juridique en Python utilisant le RAG (Retrieval-Augmented Generation) pour explorer et analyser la Constitution marocaine. Pratique de la segmentation hiérarchique de documents juridiques, de la recherche par similarité cosinus avec bases vectorielles et de la génération de réponses sourcées avec citations précises. Maîtrise du NLP appliqué aux textes réglementaires et du contrôle strict des hallucinations pour garantir l'exactitude factuelle."
+          : "Developed an AI legal research assistant using Python and Retrieval-Augmented Generation (RAG) to query and analyze the Moroccan Constitution. Practiced hierarchical legal document chunking, cosine similarity retrieval with vector stores, and citation-backed answer generation. Mastered domain-specific NLP on regulatory texts, bilingual retrieval, and prompt constraints to eliminate hallucinations and ensure factual accuracy.",
+      img: image2,
+      url: "https://github.com/anne7076",
+      tags: ["Python", "GenAI", "RAG", "NLP"],
+    },
+    {
       title: "Loan Data Analysis",
       desc:
         i18n.language === "fr"
-          ? "Analyse approfondie du jeu de données de prêts Lending Club en Python, mettant en évidence les facteurs clés influençant l'approbation des prêts et les taux d'intérêt."
-          : "Conducted a comprehensive analysis of the loan dataset from Lending Club using Python, uncovering key features that influence loan approval and the interest rates.",
+          ? "Conduite d'une analyse exploratoire de données (EDA) et modélisation de facteurs prédictifs sur le jeu de données financières de prêts Lending Club en Python. Pratique du nettoyage de données volumineuses, de l'imputation de valeurs aberrantes, de tests d'hypothèses statistiques et de la visualisation multidimensionnelle avec Pandas et Seaborn. Maîtrise de l'évaluation des risques de crédit et de l'identification des variables clés impactant le défaut de paiement et les taux d'intérêt."
+          : "Conducted an extensive exploratory data analysis (EDA) and predictive feature study on large-scale Lending Club financial loan records using Python. Practiced large-scale data cleaning, outlier imputation, statistical hypothesis testing, and multidimensional visualization with Pandas and Seaborn. Mastered credit risk assessment and the identification of primary variables driving loan default probability and interest rate variance.",
       img: image1,
       url: "https://github.com/anne7076/Loan-Analysis",
       tags: ["Python", "Data Analysis", "EDA", "Statistics"],
@@ -473,7 +473,15 @@ const ProjectsPage: React.FC = () => {
                   {proj.desc}
                 </p>
 
-                <div style={{ display: "flex", gap: "10px", alignItems: "center", marginTop: "auto", flexWrap: "wrap" }}>
+                <div
+                  style={{
+                    display: "flex",
+                    gap: "10px",
+                    alignItems: "center",
+                    marginTop: "auto",
+                    flexWrap: "wrap",
+                  }}
+                >
                   {proj.docsUrl && (
                     <a
                       href={proj.docsUrl}
