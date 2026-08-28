@@ -49,6 +49,11 @@ const resources = {
       view_docs: "View Docs",
       view_terraform: "Terraform Repo",
       private_catalog_note: "Private Catalog",
+      private_modal_title: "Proprietary Enterprise Project",
+      private_modal_desc:
+        "The source code for this project is protected under enterprise copyright and confidentiality agreements (NDA). However, I would be delighted to discuss the architecture, engineering trade-offs, and technical solutions in detail—feel free to reach out!",
+      private_modal_cta: "Discuss Architecture",
+      private_modal_close: "Close",
       footer_tagline: "A portfolio designed & built by Anne Mahamadou",
     },
   },
@@ -99,6 +104,11 @@ const resources = {
       view_docs: "Documentation",
       view_terraform: "Code Terraform",
       private_catalog_note: "Catalogue Privé",
+      private_modal_title: "Projet d'Entreprise Propriétaire",
+      private_modal_desc:
+        "Le code source de ce projet est protégé par le droit d'auteur d'entreprise et des accords de confidentialité (NDA). Cependant, je serais ravi de vous présenter en détail l'architecture système, les choix d'ingénierie et les solutions techniques mises en œuvre—n'hésitez pas à me contacter !",
+      private_modal_cta: "Discuter de l'Architecture",
+      private_modal_close: "Fermer",
       footer_tagline: "Un portfolio conçu et développé par Anne Mahamadou",
     },
   },

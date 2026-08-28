@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import {
   ArrowLeft,
   BookOpen,
@@ -10,8 +10,10 @@ import {
   Lock,
   Mail,
   MapPin,
+  Shield,
+  X,
 } from "lucide-react";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { handleProtectedMailClick } from "../utils/email";
@@ -45,6 +47,8 @@ interface CareerItem {
 
 const ProjectsPage: React.FC = () => {
   const { t, i18n } = useTranslation();
+  const [selectedPrivateProject, setSelectedPrivateProject] =
+    useState<ProjectItem | null>(null);
 
   // Scroll to top on mount
   useEffect(() => {
@@ -56,8 +60,8 @@ const ProjectsPage: React.FC = () => {
       title: "AutoPremium (Cloud & DevOps)",
       desc:
         i18n.language === "fr"
-          ? "Conception et automatisation de l'infrastructure cloud pour le déploiement d'un catalogue automobile d'entreprise avec Terraform sur AWS. Pratique approfondie de l'Infrastructure as Code (IaC) modulaire, conception de réseaux VPC isolés (sous-réseaux publics/privés, passerelles NAT), conteneurisation avec Docker et sécurisation IAM. Maîtrise du verrouillage d'état distant S3/DynamoDB et rédaction de documentation d'architecture technique pour des déploiements fiables et reproductibles."
-          : "Engineered automated cloud infrastructure for an enterprise automotive product catalog using Terraform on AWS. Practiced modular Infrastructure as Code (IaC) design, structuring isolated multi-tier VPC networking (public/private subnets, NAT gateways), Docker containerization, and granular IAM security policies. Mastered remote state locking with S3 and DynamoDB, automated provisioning pipelines, and comprehensive architecture documentation for reproducible production environments.",
+          ? "Conception et automatisation de l'infrastructure cloud pour le déploiement d'un catalogue automobile d'entreprise avec Terraform sur AWS. Pratique approfondie de l'Infrastructure as Code (IaC) modulaire, conception de réseaux VPC isolés (sous-réseaux publics/privés, passerelles NAT), conteneurisation avec Docker et sécurisation IAM. Maîtrise du verrouillage d'état distant S3 et rédaction de documentation d'architecture technique pour des déploiements fiables et reproductibles."
+          : "Engineered automated cloud infrastructure for an enterprise automotive product catalog using Terraform on AWS. Practiced modular Infrastructure as Code (IaC) design, structuring isolated multi-tier VPC networking (public/private subnets, NAT gateways), Docker containerization, and granular IAM security policies. Mastered remote state locking with S3, automated provisioning pipelines, and comprehensive architecture documentation for reproducible production environments.",
       img: autopremiumImg,
       docsUrl: "https://anne7076.github.io/autopremuim-terraform-infra/",
       githubUrl: "https://github.com/anne7076/autopremuim-terraform-infra",
@@ -71,7 +75,8 @@ const ProjectsPage: React.FC = () => {
           ? "Développement d'un agent IA autonome pour la veille stratégique et l'engagement automatisé sur les réseaux sociaux. Pratique de l'orchestration multi-agents avec LangChain, du filtrage sémantique par embeddings vectoriels et de l'intégration résiliente d'APIs tierces (LinkedIn, X/Twitter, Reddit). Maîtrise de la synthèse d'actualités en temps réel, de l'ingénierie de prompts avancée pour l'adaptation stylistique de contenu et de l'automatisation de flux décisionnels."
           : "Developed an autonomous AI agent to automate research, trend curation, and engagement across major digital networks. Practiced multi-agent orchestration with LangChain, semantic content filtering via vector embeddings, and resilient API integration for LinkedIn, X (Twitter), and Reddit. Mastered real-time trend synthesis, advanced prompt engineering for stylistic voice adaptation, and autonomous decision workflows.",
       img: socialMediaAgentImg,
-      url: "https://github.com/anne7076/social-media-agent",
+      // url: "https://github.com/anne7076/social-media-agent", // Uncomment this line once i release the project publicly
+      isPrivate: true,
       tags: ["AI Agent", "Python", "LangChain", "LLMs", "Social APIs"],
     },
     {
@@ -81,7 +86,8 @@ const ProjectsPage: React.FC = () => {
           ? "Architecture d'une solution e-commerce full-stack découplée combinant un frontend Next.js haute performance et un backend Java Spring Boot en microservices REST. Pratique du rendu côté serveur (SSR), de l'optimisation SEO, de l'authentification sans état par JWT avec contrôle d'accès basé sur les rôles (RBAC), et de la persistance relationnelle PostgreSQL/JPA. Maîtrise de la gestion d'état transactionnelle pour les paniers et paiements, ainsi que de la conception de contrats d'API scalables."
           : "Architected a full-stack, decoupled e-commerce solution combining a high-performance Next.js frontend with a Java Spring Boot REST microservice backend. Practiced server-side rendering (SSR), SEO optimization, stateless JWT authentication with role-based access control (RBAC), and relational persistence with PostgreSQL/JPA. Mastered transactional state management for cart and checkout flows, and scalable REST API contract design.",
       img: image4,
-      url: "https://github.com/anne7076",
+      // url: "https://github.com/anne7076",
+      isPrivate: true,
       tags: ["Next.js", "Spring Boot", "Java", "PostgreSQL", "REST APIs"],
     },
     {
@@ -101,7 +107,7 @@ const ProjectsPage: React.FC = () => {
           ? "Développement d'un assistant de recherche juridique en Python utilisant le RAG (Retrieval-Augmented Generation) pour explorer et analyser la Constitution marocaine. Pratique de la segmentation hiérarchique de documents juridiques, de la recherche par similarité cosinus avec bases vectorielles et de la génération de réponses sourcées avec citations précises. Maîtrise du NLP appliqué aux textes réglementaires et du contrôle strict des hallucinations pour garantir l'exactitude factuelle."
           : "Developed an AI legal research assistant using Python and Retrieval-Augmented Generation (RAG) to query and analyze the Moroccan Constitution. Practiced hierarchical legal document chunking, cosine similarity retrieval with vector stores, and citation-backed answer generation. Mastered domain-specific NLP on regulatory texts, bilingual retrieval, and prompt constraints to eliminate hallucinations and ensure factual accuracy.",
       img: image2,
-      url: "https://github.com/anne7076",
+      url: "https://github.com/Badreddine-Chihab/RAG_constitution",
       tags: ["Python", "GenAI", "RAG", "NLP"],
     },
     {
@@ -560,23 +566,38 @@ const ProjectsPage: React.FC = () => {
                   )}
 
                   {proj.isPrivate && !proj.githubUrl && !proj.docsUrl && (
-                    <span
+                    <button
+                      type="button"
+                      onClick={() => setSelectedPrivateProject(proj)}
                       style={{
                         display: "inline-flex",
                         alignItems: "center",
                         gap: "8px",
                         background: "var(--bg-primary)",
                         color: "var(--text-secondary)",
-                        padding: "11px 18px",
+                        padding: "10px 18px",
                         borderRadius: "50px",
                         fontSize: "0.85rem",
                         fontWeight: 600,
                         border: "1px solid var(--border-color)",
+                        cursor: "pointer",
+                        transition: "all 0.2s ease",
+                      }}
+                      title={t("private_modal_desc")}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.borderColor =
+                          "var(--text-secondary)";
+                        e.currentTarget.style.color = "var(--text-primary)";
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.borderColor =
+                          "var(--border-color)";
+                        e.currentTarget.style.color = "var(--text-secondary)";
                       }}
                     >
                       <Lock size={14} />
                       {t("private_project")}
-                    </span>
+                    </button>
                   )}
                 </div>
               </div>
@@ -727,6 +748,205 @@ const ProjectsPage: React.FC = () => {
           </a>
         </div>
       </motion.div>
+
+      {/* Interactive Enterprise NDA / Copyright Modal */}
+      <AnimatePresence>
+        {selectedPrivateProject && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            style={{
+              position: "fixed",
+              inset: 0,
+              zIndex: 9999,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              padding: "20px",
+              background: "rgba(0, 0, 0, 0.65)",
+              backdropFilter: "blur(8px)",
+              WebkitBackdropFilter: "blur(8px)",
+            }}
+            onClick={() => setSelectedPrivateProject(null)}
+          >
+            <motion.div
+              initial={{ opacity: 0, scale: 0.94, y: 15 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.94, y: 15 }}
+              transition={{ duration: 0.25, ease: "easeOut" }}
+              style={{
+                position: "relative",
+                width: "100%",
+                maxWidth: "520px",
+                background: "var(--bg-bento)",
+                border: "1px solid var(--border-color)",
+                borderRadius: "24px",
+                padding: "36px 32px",
+                boxShadow: "var(--shadow-lg)",
+                color: "var(--text-primary)",
+              }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Close Button */}
+              <button
+                type="button"
+                onClick={() => setSelectedPrivateProject(null)}
+                aria-label={t("private_modal_close")}
+                style={{
+                  position: "absolute",
+                  top: "20px",
+                  right: "20px",
+                  width: "36px",
+                  height: "36px",
+                  borderRadius: "50%",
+                  border: "1px solid var(--border-color)",
+                  background: "var(--bg-primary)",
+                  color: "var(--text-secondary)",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  cursor: "pointer",
+                  transition: "all 0.2s ease",
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.color = "var(--text-primary)";
+                  e.currentTarget.style.borderColor = "var(--text-secondary)";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.color = "var(--text-secondary)";
+                  e.currentTarget.style.borderColor = "var(--border-color)";
+                }}
+              >
+                <X size={18} />
+              </button>
+
+              {/* Modal Header */}
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "14px",
+                  marginBottom: "18px",
+                }}
+              >
+                <div
+                  style={{
+                    width: "48px",
+                    height: "48px",
+                    borderRadius: "14px",
+                    background: "var(--bg-primary)",
+                    border: "1px solid var(--border-color)",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    color: "#f59e0b",
+                    flexShrink: 0,
+                  }}
+                >
+                  <Shield size={24} />
+                </div>
+                <div>
+                  <h3
+                    style={{
+                      margin: 0,
+                      fontSize: "1.25rem",
+                      letterSpacing: "-0.01em",
+                    }}
+                  >
+                    {t("private_modal_title")}
+                  </h3>
+                  <span
+                    style={{
+                      fontSize: "0.85rem",
+                      color: "var(--text-secondary)",
+                      fontWeight: 500,
+                    }}
+                  >
+                    {selectedPrivateProject.title}
+                  </span>
+                </div>
+              </div>
+
+              {/* Modal Description */}
+              <p
+                style={{
+                  fontSize: "0.95rem",
+                  lineHeight: 1.65,
+                  color: "var(--text-secondary)",
+                  marginBottom: "28px",
+                }}
+              >
+                {t("private_modal_desc")}
+              </p>
+
+              {/* Action Buttons */}
+              <div
+                style={{
+                  display: "flex",
+                  gap: "12px",
+                  flexWrap: "wrap",
+                  justifyContent: "flex-end",
+                }}
+              >
+                <button
+                  type="button"
+                  onClick={() => setSelectedPrivateProject(null)}
+                  style={{
+                    background: "transparent",
+                    color: "var(--text-primary)",
+                    border: "1px solid var(--border-color)",
+                    padding: "12px 22px",
+                    borderRadius: "50px",
+                    fontSize: "0.9rem",
+                    fontWeight: 600,
+                    cursor: "pointer",
+                    transition: "all 0.2s ease",
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.borderColor = "var(--text-secondary)";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.borderColor = "var(--border-color)";
+                  }}
+                >
+                  {t("private_modal_close")}
+                </button>
+                <button
+                  type="button"
+                  onClick={(e) => {
+                    setSelectedPrivateProject(null);
+                    handleProtectedMailClick(e);
+                  }}
+                  style={{
+                    display: "inline-flex",
+                    alignItems: "center",
+                    gap: "8px",
+                    background: "var(--text-primary)",
+                    color: "var(--bg-primary)",
+                    border: "none",
+                    padding: "12px 24px",
+                    borderRadius: "50px",
+                    fontSize: "0.9rem",
+                    fontWeight: 600,
+                    cursor: "pointer",
+                    transition: "transform 0.2s ease",
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = "translateY(-2px)";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = "translateY(0)";
+                  }}
+                >
+                  <Mail size={16} />
+                  {t("private_modal_cta")}
+                </button>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };
