@@ -1,11 +1,13 @@
 import { motion } from "framer-motion";
 import {
   ArrowLeft,
+  BookOpen,
   Briefcase,
   Calendar,
   ExternalLink,
   FolderGit2,
   Layers,
+  Lock,
   Mail,
   MapPin,
 } from "lucide-react";
@@ -19,14 +21,18 @@ import image1 from "../assets/images/image1.jpg";
 import image2 from "../assets/images/image2.svg";
 import image3 from "../assets/images/image3.webp";
 import image4 from "../assets/images/image4.avif";
-import image5 from "../assets/images/image5.jpg";
+import socialMediaAgentImg from "../assets/images/social-media-agent.svg";
+import autopremiumImg from "../assets/images/autopremium.svg";
 
 interface ProjectItem {
   title: string;
   desc: string;
   img: string;
-  url: string;
   tags: string[];
+  url?: string;
+  docsUrl?: string;
+  githubUrl?: string;
+  isPrivate?: boolean;
 }
 
 interface CareerItem {
@@ -47,14 +53,36 @@ const ProjectsPage: React.FC = () => {
 
   const projects: ProjectItem[] = [
     {
-      title: "Loan Data Analysis",
+      title: "Social Media AI Agent",
       desc:
         i18n.language === "fr"
-          ? "Analyse approfondie du jeu de données de prêts Lending Club en Python, mettant en évidence les facteurs clés influençant l'approbation des prêts et les taux d'intérêt."
-          : "Conducted a comprehensive analysis of the loan dataset from Lending Club using Python, uncovering key features that influence loan approval and the interest rates.",
-      img: image1,
-      url: "https://github.com/anne7076/Loan-Analysis",
-      tags: ["Python", "Data Analysis", "EDA", "Statistics"],
+          ? "Agent IA autonome multi-plateformes conçu pour maintenir une présence active et informée sur les réseaux sociaux. Agrège les discussions clés et tendances sectorielles sur LinkedIn, X (Twitter) et Reddit, analyse la résonance thématique et propose des publications engageantes prêtes à être partagées."
+          : "Autonomous multi-platform AI agent designed to keep users informed and active across their digital networks. Intelligently aggregates trending industry discussions across LinkedIn, X (Twitter), and Reddit, analyzes topical resonance, and generates personalized, high-engagement content proposals ready for publication.",
+      img: socialMediaAgentImg,
+      url: "https://github.com/anne7076/social-media-agent",
+      tags: ["AI Agent", "Python", "LangChain", "LLMs", "Social APIs"],
+    },
+    {
+      title: "AutoPremium (Cloud & DevOps)",
+      desc:
+        i18n.language === "fr"
+          ? "Infrastructure Cloud et automatisation DevOps pour un catalogue de produits automobiles d'entreprise. L'application métier étant propriétaire, l'Infrastructure as Code (IaC) complète est démontrée publiquement via Terraform sur AWS : conception modulaire de VPC, conteneurisation Docker, provisionnement automatisé et documentation d'architecture déployée."
+          : "Cloud infrastructure and deployment automation for an enterprise automotive product catalog. The core application is proprietary, while the complete Infrastructure as Code (IaC) is publicly demonstrated using Terraform on AWS—featuring modular VPC design, Docker container orchestration, automated provisioning, and comprehensive deployed architecture documentation.",
+      img: autopremiumImg,
+      docsUrl: "https://anne7076.github.io/autopremuim-terraform-infra/",
+      githubUrl: "https://github.com/anne7076/autopremuim-terraform-infra",
+      isPrivate: true,
+      tags: ["Terraform", "DevOps", "AWS", "Docker", "IaC", "CI/CD"],
+    },
+    {
+      title: "E-Commerce Platform",
+      desc:
+        i18n.language === "fr"
+          ? "Plateforme e-commerce full-stack d'envergure industrielle utilisant Next.js pour un rendu côté serveur (SSR) haute performance et l'optimisation SEO, associée à des microservices REST robustes en Java Spring Boot. Intègre une authentification JWT sécurisée, un catalogue dynamique avec filtres multicritères, la gestion d'état du panier et un flux de paiement fiable."
+          : "Full-stack, production-grade e-commerce platform engineered with Next.js for high-performance server-side rendering (SSR), SEO optimization, and responsive routing, backed by scalable Java Spring Boot REST microservices. Built end-to-end features including JWT-secured authentication, dynamic product catalog, cart state workflows, and reliable transaction processing.",
+      img: image4,
+      url: "https://github.com/anne7076",
+      tags: ["Next.js", "Spring Boot", "Java", "PostgreSQL", "REST APIs"],
     },
     {
       title: "Moroccan Constitution Chatbot",
@@ -63,7 +91,7 @@ const ProjectsPage: React.FC = () => {
           ? "Conception d'un chatbot basé sur la technologie RAG (Retrieval-Augmented Generation) en Python pour répondre aux questions et fournir des analyses sur la constitution marocaine."
           : "Created a chatbot based on Retrieval-Augmented Generation (RAG) technology using Python. Designed to answer questions and provide insights about constitution articles.",
       img: image2,
-      url: "https://yujisatojr.itch.io/highspeedchase",
+      url: "https://github.com/anne7076",
       tags: ["Python", "GenAI", "RAG", "NLP"],
     },
     {
@@ -73,28 +101,18 @@ const ProjectsPage: React.FC = () => {
           ? "Développement d'un assistant conversationnel RAG en Python pour assister les clients sur les produits, services et politiques d'entreprise avec des réponses précises en temps réel."
           : "Developed a chatbot using Retrieval-Augmented Generation (RAG) technology in Python to assist clients with inquiries about products, services, and company policies.",
       img: image3,
-      url: "https://yujisatojr.itch.io/spacecraft",
+      isPrivate: true,
       tags: ["Python", "LangChain", "RAG", "LLM"],
     },
     {
-      title: "E-Commerce Platform",
+      title: "Loan Data Analysis",
       desc:
         i18n.language === "fr"
-          ? "Plateforme e-commerce moderne conçue avec React en frontend et Spring Boot en backend : authentification, catalogue, panier d'achat et paiement sécurisé."
-          : "Designed and developed an e-commerce platform using React for the frontend and Spring-boot for the backend with authentication, product listings, cart, and payment.",
-      img: image4,
-      url: "https://www.datumlearn.com/",
-      tags: ["React", "Spring Boot", "Java", "SQL"],
-    },
-    {
-      title: "Pharmacy Management System",
-      desc:
-        i18n.language === "fr"
-          ? "Système complet de gestion de pharmacie en Java : gestion des stocks, suivi des ordonnances et dossiers patients pour fluidifier les opérations officinales."
-          : "Developed a comprehensive pharmacy management system using Java, featuring inventory management, prescription handling, and patient records.",
-      img: image5,
-      url: "https://www.datumlearn.com/",
-      tags: ["Java", "Inventory System", "Database", "OOP"],
+          ? "Analyse approfondie du jeu de données de prêts Lending Club en Python, mettant en évidence les facteurs clés influençant l'approbation des prêts et les taux d'intérêt."
+          : "Conducted a comprehensive analysis of the loan dataset from Lending Club using Python, uncovering key features that influence loan approval and the interest rates.",
+      img: image1,
+      url: "https://github.com/anne7076/Loan-Analysis",
+      tags: ["Python", "Data Analysis", "EDA", "Statistics"],
     },
   ];
 
@@ -455,29 +473,104 @@ const ProjectsPage: React.FC = () => {
                   {proj.desc}
                 </p>
 
-                <a
-                  href={proj.url}
-                  target="_blank"
-                  rel="noreferrer"
-                  style={{
-                    display: "inline-flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    gap: "8px",
-                    background: "var(--text-primary)",
-                    color: "var(--bg-primary)",
-                    padding: "12px 20px",
-                    borderRadius: "50px",
-                    fontSize: "0.9rem",
-                    fontWeight: 600,
-                    textDecoration: "none",
-                    transition: "transform 0.2s ease",
-                    marginTop: "auto",
-                  }}
-                >
-                  {t("visit_link")}
-                  <ExternalLink size={16} />
-                </a>
+                <div style={{ display: "flex", gap: "10px", alignItems: "center", marginTop: "auto", flexWrap: "wrap" }}>
+                  {proj.docsUrl && (
+                    <a
+                      href={proj.docsUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                      style={{
+                        display: "inline-flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        gap: "8px",
+                        background: "var(--text-primary)",
+                        color: "var(--bg-primary)",
+                        padding: "10px 20px",
+                        borderRadius: "50px",
+                        fontSize: "0.88rem",
+                        fontWeight: 600,
+                        textDecoration: "none",
+                        transition: "transform 0.2s ease",
+                      }}
+                    >
+                      <BookOpen size={15} />
+                      {t("view_docs")}
+                      <ExternalLink size={13} />
+                    </a>
+                  )}
+
+                  {proj.githubUrl && (
+                    <a
+                      href={proj.githubUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                      style={{
+                        display: "inline-flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        gap: "8px",
+                        background: "transparent",
+                        color: "var(--text-primary)",
+                        border: "1px solid var(--border-color)",
+                        padding: "10px 18px",
+                        borderRadius: "50px",
+                        fontSize: "0.88rem",
+                        fontWeight: 600,
+                        textDecoration: "none",
+                        transition: "transform 0.2s ease",
+                      }}
+                    >
+                      <GitHubIcon size={16} />
+                      {t("view_terraform")}
+                    </a>
+                  )}
+
+                  {proj.url && !proj.docsUrl && (
+                    <a
+                      href={proj.url}
+                      target="_blank"
+                      rel="noreferrer"
+                      style={{
+                        display: "inline-flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        gap: "8px",
+                        background: "var(--text-primary)",
+                        color: "var(--bg-primary)",
+                        padding: "12px 20px",
+                        borderRadius: "50px",
+                        fontSize: "0.9rem",
+                        fontWeight: 600,
+                        textDecoration: "none",
+                        transition: "transform 0.2s ease",
+                      }}
+                    >
+                      {t("visit_link")}
+                      <ExternalLink size={16} />
+                    </a>
+                  )}
+
+                  {proj.isPrivate && !proj.githubUrl && !proj.docsUrl && (
+                    <span
+                      style={{
+                        display: "inline-flex",
+                        alignItems: "center",
+                        gap: "8px",
+                        background: "var(--bg-primary)",
+                        color: "var(--text-secondary)",
+                        padding: "11px 18px",
+                        borderRadius: "50px",
+                        fontSize: "0.85rem",
+                        fontWeight: 600,
+                        border: "1px solid var(--border-color)",
+                      }}
+                    >
+                      <Lock size={14} />
+                      {t("private_project")}
+                    </span>
+                  )}
+                </div>
               </div>
             </motion.div>
           ))}
