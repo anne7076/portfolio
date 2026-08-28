@@ -5,6 +5,7 @@ import {
   Bot,
   Briefcase,
   Code2,
+  FileText,
   Mail,
   Server,
   Wrench,
@@ -222,6 +223,28 @@ export const AboutBento: React.FC = () => {
             }}
           >
             <LinkedInIcon size={16} />
+          </a>
+          <a
+            href="/resume.pdf"
+            download="Anne_Mahamadou_Resume.pdf"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Download CV"
+            title={t("download_cv")}
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              width: "34px",
+              height: "34px",
+              borderRadius: "50%",
+              background: "var(--bg-primary)",
+              border: "1px solid var(--border-color)",
+              color: "var(--text-primary)",
+              transition: "all 0.2s ease",
+            }}
+          >
+            <FileText size={16} />
           </a>
         </div>
       </div>

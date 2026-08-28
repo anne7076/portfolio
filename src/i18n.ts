@@ -20,6 +20,7 @@ const resources = {
       nav_contact: "Contact",
       btn_contact: "Get in Touch",
       btn_about: "About Me",
+      download_cv: "Download CV",
       about_title: "About Me",
       about_desc:
         "I'm an AI & Software Engineer fascinated by the intersection of distributed systems and artificial intelligence. Whether architecting high-throughput backends or orchestrating enterprise RAG pipelines with LLMs, I thrive on turning ambiguous, complex problems into robust, production-ready digital products. Always curious, constantly building, and driven by software that creates real impact.",
@@ -74,6 +75,7 @@ const resources = {
       nav_contact: "Contact",
       btn_contact: "Me Contacter",
       btn_about: "À Propos de Moi",
+      download_cv: "Télécharger mon CV",
       about_title: "À Propos",
       about_desc:
         "Ingénieur IA & Logiciel, je suis passionné par la convergence entre architectures distribuées et intelligence artificielle. Qu'il s'agisse de concevoir des backends résilients ou d'orchestrer des pipelines RAG avancés avec des LLMs, mon moteur est de transformer des défis complexes en solutions logicielles robustes et prêtes pour la production. Bâtisseur dans l'âme, curieux et guidé par l'impact réel.",
