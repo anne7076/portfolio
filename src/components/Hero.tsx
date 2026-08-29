@@ -6,7 +6,7 @@ import { handleProtectedMailClick } from "../utils/email";
 import { GitHubIcon, LinkedInIcon } from "./SocialIcons";
 
 const Hero: React.FC = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
 
   const handleContactClick = (e: React.MouseEvent) => {
     const contactSection = document.getElementById("contact-section");
@@ -79,8 +79,12 @@ const Hero: React.FC = () => {
           <ArrowDown size={16} />
         </button>
         <a
-          href="/resume.pdf"
-          download="Anne_Mahamadou_Resume.pdf"
+          href={i18n.language === "fr" ? "/resume_fr.pdf" : "/resume.pdf"}
+          download={
+            i18n.language === "fr"
+              ? "Anne_Mahamadou_CV_FR.pdf"
+              : "Anne_Mahamadou_Resume_EN.pdf"
+          }
           target="_blank"
           rel="noopener noreferrer"
           className="btn-secondary"

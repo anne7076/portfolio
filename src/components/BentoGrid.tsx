@@ -47,7 +47,7 @@ export const BentoCard: React.FC<{
 };
 
 export const AboutBento: React.FC = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
 
   const focusAreas = [
     t("about_focus_1"),
@@ -225,8 +225,12 @@ export const AboutBento: React.FC = () => {
             <LinkedInIcon size={16} />
           </a>
           <a
-            href="/resume.pdf"
-            download="Anne_Mahamadou_Resume.pdf"
+            href={i18n.language === "fr" ? "/resume_fr.pdf" : "/resume.pdf"}
+            download={
+              i18n.language === "fr"
+                ? "Anne_Mahamadou_CV_FR.pdf"
+                : "Anne_Mahamadou_Resume_EN.pdf"
+            }
             target="_blank"
             rel="noreferrer"
             aria-label="Download CV"
