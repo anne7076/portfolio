@@ -255,19 +255,20 @@ export const AboutBento: React.FC = () => {
 export const SkillsBento: React.FC = () => {
   const { t } = useTranslation();
   const skills = [
-    "TypeScript",
     "Python",
+    "PyTorch/TensorFlow",
+    "LangChain/Langgraph",
+    "OpenAI",
     "Java",
     "Spring Boot",
-    "SQL",
-    "MongoDB",
-    "React",
+    "TypeScript",
     "Next.js",
-    "Terraform",
+    "React",
     "Docker",
+    "Terraform",
     "AWS",
-    "LangChain",
-    "OpenAI",
+    "SQL",
+    "NoSQL",
   ];
 
   return (
@@ -328,7 +329,7 @@ export const ProjectsBento: React.FC = () => {
             color: "var(--text-secondary)",
           }}
         >
-          5 Projects • 2 Roles
+          7 Projects • 2 Roles
         </span>
       </div>
       <h3>{t("projects_bento_title")}</h3>

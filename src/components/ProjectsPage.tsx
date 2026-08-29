@@ -20,6 +20,7 @@ import { handleProtectedMailClick } from "../utils/email";
 import { GitHubIcon, LinkedInIcon } from "./SocialIcons";
 
 import autopremiumImg from "../assets/images/autopremium.svg";
+import endoaiImg from "../assets/images/endoai.svg";
 import image1 from "../assets/images/image1.jpg";
 import image2 from "../assets/images/image2.svg";
 import image3 from "../assets/images/image3.webp";
@@ -56,6 +57,23 @@ const ProjectsPage: React.FC = () => {
   }, []);
 
   const projects: ProjectItem[] = [
+    {
+      title: "EndoAI (Medical Computer Vision)",
+      desc:
+        i18n.language === "fr"
+          ? "Développement de pipelines de vision par ordinateur (Deep Learning) pour l'automatisation du diagnostic des Maladies Inflammatoires Intestinales (MII) à partir d'imageries endoscopiques. Pratique du transfer learning et du benchmark d'architectures (ResNet50, Vision Transformers / ViT) sous PyTorch et Keras. Maîtrise de l'augmentation de données médicales, du fine-tuning sur distributions d'images cliniques et de l'évaluation rigoureuse des performances (AUC-ROC, F1-score)."
+          : "Engineered deep learning computer vision pipelines for automated detection and classification of Inflammatory Bowel Diseases (IBD) from endoscopic imaging. Practiced transfer learning and architectural benchmarking using ResNet50 and Vision Transformers (ViT) in PyTorch and Keras. Mastered medical data augmentation, fine-tuning on high-resolution clinical image distributions, performance evaluation (AUC-ROC, F1-score), and cloud GPU model training via Kaggle and Google Colab.",
+      img: endoaiImg,
+      url: "https://github.com/anne7076/endoAI",
+      tags: [
+        "Computer Vision",
+        "PyTorch",
+        "Deep Learning",
+        "Vision Transformer",
+        "ResNet50",
+        "Medical AI",
+      ],
+    },
     {
       title: "AutoPremium (Cloud & DevOps)",
       desc:
@@ -127,27 +145,39 @@ const ProjectsPage: React.FC = () => {
       period: "2025 - 2026",
       role:
         i18n.language === "fr"
-          ? "Stagiaire Ingénieur Logiciel"
-          : "Software Engineer Intern",
-      location: "Oujda, Morocco",
-      description:
-        i18n.language === "fr"
-          ? "Développement full-stack, conception d'APIs REST performantes et optimisation de l'expérience utilisateur."
-          : "Full-stack Development, API Development, and modern user experience engineering.",
-      skills: ["Full-stack", "REST APIs", "Spring Boot", "React", "TypeScript"],
-    },
-    {
-      period: "2024 - 2025",
-      role:
-        i18n.language === "fr"
-          ? "Stagiaire Ingénieur IA"
-          : "AI Engineer Intern",
+          ? "Assistant Ingénieur IA (Stage) — CRAA-Technologie"
+          : "Assistant AI Engineer Intern — CRAA-Technologie",
       location: "Bamako, Mali",
       description:
         i18n.language === "fr"
-          ? "Intégration de modèles ChatGPT, entraînement et fine-tuning de modèles d'IA et traitement automatique du langage naturel (NLP)."
-          : "ChatGPT Integration, AI Model Training, and Natural Language Processing (NLP) solutions.",
-      skills: ["Python", "ChatGPT / LLMs", "NLP", "RAG", "Model Training"],
+          ? "Conception et intégration d'un Chatbot IA d'assistance client basé sur une architecture RAG. Rédaction d'une documentation technique de référence sur les architectures d'agents IA et les workflows de déploiement."
+          : "Designed, developed, and integrated an AI-powered conversational chatbot leveraging Retrieval-Augmented Generation (RAG) for automated customer support. Authored comprehensive technical documentation on AI Agent architectures and deployment workflows.",
+      skills: [
+        "RAG",
+        "AI Agents",
+        "Python",
+        "LangChain",
+        "LLMs",
+        "Documentation",
+      ],
+    },
+    {
+      period: "2023 – 2024",
+      role:
+        i18n.language === "fr"
+          ? "Chargé Académique & Culturel — Bureau ESSIE (ENSAO)"
+          : "Academic & Cultural Officer — ESSIE Board (ENSAO)",
+      location: "Oujda, Morocco",
+      description:
+        i18n.language === "fr"
+          ? "Direction et organisation de journées scientifiques et culturelles pour le Bureau des Étudiants Subsahariens Ingénieurs de l'ENSA. Coordination de l'intégration académique et des activités parascolaires."
+          : "Headed the organization of major scientific symposiums and cultural days for the Sub-Saharan Engineering Student Association. Coordinated academic integration programs and extracurricular initiatives.",
+      skills: [
+        "Project Management",
+        "Leadership",
+        "Coordination",
+        "Communication",
+      ],
     },
   ];
 
